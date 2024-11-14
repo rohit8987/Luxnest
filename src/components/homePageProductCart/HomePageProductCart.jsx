@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import myContext from "../../context/MyContext";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import Loader from "../loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, deleteFromCart } from "../../redux/CartSlice";
+import { addToCart, deleteFromCart } from "../../redux/cartSlice";
 import toast from "react-hot-toast";
 
 
@@ -14,11 +14,13 @@ const HomePageProductCart = () => {
     const context = useContext(myContext);
     const { loading, getAllProduct } = context;
 
-    const cartItems = useSelector((state) => state.cart || [])
-    console.log()
+    const cartItems = useSelector((state) => state.cart)
+    console.log(cartItems)
     const dispatch = useDispatch();
 
     const addCart = (item) => {
+        // const data = [...cartValue, item]
+        // localStorage.setItem('cart', JSON.stringify(data));
         // console.log(item)
         dispatch(addToCart(item));
         toast.success("Add to cart")
@@ -32,7 +34,10 @@ const HomePageProductCart = () => {
     // console.log(cartItems)
 
     useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cartItems));
+        console.log(cartItems)
+        if(cartItems?.length > 0) {
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+        }
     }, [cartItems])
 
     return (
@@ -73,21 +78,22 @@ const HomePageProductCart = () => {
                                             </h1>
 
                                             <div className="flex justify-center">
-                                                {cartItems.some((p) => p.id === item.id) ? (
+                                                {cartItems?.some((p) => p.id === item.id) ? (
                                                     <button
                                                         onClick={() => deleteCart(item)}
-                                                        className="bg-red-700 hover:bg-pink-600 w-full text-white py-[4px] rounded-lg font-bold"
+                                                        className="bg-red-700 hover:bg-pink-600 w-full text-white py-[1px] rounded-lg font-[600] "
                                                     >
                                                         Delete From Cart
-                                                    </button>
-                                                ) : (
-                                                    <button
-                                                        onClick={() => addCart(item)}
-                                                        className="bg-pink-500 hover:bg-pink-600 w-full text-white py-[4px] rounded-lg font-bold"
-                                                    >
-                                                        Add To Cart
-                                                    </button>
-                                                )}
+                                                    </button>)
+                                                    :
+                                                    (
+                                                        <button
+                                                            onClick={() => addCart(item)}
+                                                            className="bg-pink-500 hover:bg-pink-600 w-full text-white py-[4px] rounded-lg font-bold"
+                                                        >
+                                                            Add To Cart
+                                                        </button>
+                                                    )}
                                             </div>
                                         </div>
                                     </div>
