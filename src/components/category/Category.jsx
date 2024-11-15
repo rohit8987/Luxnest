@@ -2,36 +2,36 @@ import { useNavigate } from "react-router";
 
 const category = [
     {
-        image: 'https://cdn-icons-png.flaticon.com/256/4359/4359963.png',
-        name: 'Fashion'
+        image: '',
+        name: 'Antique'
     },
     {
-        image: 'https://cdn-icons-png.flaticon.com/256/11833/11833323.png',
-        name: 'Shirt'
+        image: '',
+        name: 'Earring Collection'
     },
     {
-        image: 'https://cdn-icons-png.flaticon.com/256/8174/8174424.png',
-        name: 'Jacket'
+        image: '',
+        name: 'Mangalsutra'
     },
     {
-        image: 'https://cdn-icons-png.flaticon.com/256/7648/7648246.png',
-        name: 'Mobile'
+        image: '',
+        name: 'Nakshatra CZ'
     },
     {
-        image: 'https://cdn-icons-png.flaticon.com/256/12142/12142416.png',
-        name: 'Laptop'
+        image: '',
+        name: 'Kundan'
     },
     {
-        image: 'https://cdn-icons-png.flaticon.com/256/10686/10686553.png',
-        name: 'Shoes'
+        image: '',
+        name: 'Bridal'
     },
     {
-        image: 'https://cdn-icons-png.flaticon.com/256/12114/12114279.png',
-        name: 'Home'
+        image: '',
+        name: 'Enamel'
     },
     {
-        image: 'https://cdn-icons-png.flaticon.com/256/11946/11946316.png',
-        name: 'Books'
+        image: '',
+        name: 'Tribal Collection'
     }
 ]
 

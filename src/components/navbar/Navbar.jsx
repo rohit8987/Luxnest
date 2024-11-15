@@ -58,7 +58,7 @@ const Navbar = () => {
             {/* Cart */}
             <li>
                 <Link to={'/cart'}>
-                    Cart({cartItems.length} )
+                    Cart({cartItems.length})
                 </Link>
             </li>
         </ul>

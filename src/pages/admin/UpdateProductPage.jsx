@@ -1,25 +1,25 @@
 import { useContext, useEffect, useState } from "react";
 import myContext from "../../context/MyContext";
 import { useNavigate, useParams } from "react-router-dom";
-import { doc, getDoc, setDoc, Timestamp } from "firebase/firestore";
+import { doc, getDoc, Timestamp, updateDoc } from "firebase/firestore";
 import { fireDB } from "../../Firebase/FirebaseConfig";
-import toast from "react-hot-toast";
+
 import Loader from "../../components/loader/Loader";
 
 const categoryList = [
-    { name: 'fashion' },
-    { name: 'shirt' },
-    { name: 'jacket' },
-    { name: 'mobile' },
-    { name: 'laptop' },
-    { name: 'shoes' },
-    { name: 'home' },
-    { name: 'books' }
+    { name: 'Fashion' },
+    { name: 'Shirt' },
+    { name: 'Jacket' },
+    { name: 'Mobile' },
+    { name: 'Laptop' },
+    { name: 'Shoes' },
+    { name: 'Home' },
+    { name: 'Books' }
 ];
 
 const UpdateProductPage = () => {
     const context = useContext(myContext);
-    const { loading, setLoading, getAllProductFunction } = context;
+    const { loading, setLoading, } = context;
     const navigate = useNavigate();
     const { id } = useParams();
 
@@ -30,6 +30,7 @@ const UpdateProductPage = () => {
         category: "",
         description: "",
         time: Timestamp.now(),
+        quantity: 1,
         date: new Date().toLocaleString(
             "en-US",
             { month: "short", day: "2-digit", year: "numeric" }
@@ -37,36 +38,47 @@ const UpdateProductPage = () => {
     });
 
     const getSingleProductFunction = async () => {
-        if (!id) return;
         setLoading(true);
         try {
-            const productDoc = await getDoc(doc(fireDB, "product", id));
-            const productData = productDoc.data();
+            const productTemp = await getDoc(doc(fireDB, "product", id))
+          
+            const product = productTemp.data();
+                console.log(product, 'data')
             setProduct({
-                title: productData?.title,
-                price: productData?.price,
-                productImageUrl: productData?.productImageUrl,
-                category: productData?.category,
-                description: productData?.description,
-                quantity: productData?.quantity,
-                time: productData?.time,
-                date: productData?.date
-            });
+                title: product?.title,
+                price: product?.price,
+                productImageUrl: product?.productImageUrl,
+                category: product?.category,
+                description: product?.description,
+                quantity : product?.quantity,
+                time: product?.time,
+                date: product?.date
+            })
+            setLoading(false);
+
         } catch (error) {
             console.log(error);
-        } finally {
             setLoading(false);
         }
-    };
+    }
 
 // without firebase 
 
-    const updateProduct = () => {
+    const updateProduct = async () => {
       setLoading(true);
+      try{
+        const productRef = doc(fireDB, "product", id);
+        await updateDoc(productRef, product);
+        navigate('/admin-dashboard');
+    } catch (error){
+        console.log(error)
+        setLoading(false)
+        // toast.error("Add product Failed")
+    }
 
-      console.log("Navigating without Firebase update");
-      navigate('/admin-dashboard');
-      setLoading(false);
+    //   console.log("Navigating without Firebase update");
+    //   navigate('/admin-dashboard');
+    //   setLoading(false);
   };
 
 

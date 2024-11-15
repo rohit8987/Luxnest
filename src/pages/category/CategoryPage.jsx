@@ -15,26 +15,26 @@ const CategoryPage = () => {
 
     const navigate = useNavigate();
 
-    const cartItems = useSelector((state)=> state.cart)
+    const cartItems = useSelector((state) => state.cart)
     const dispatch = useDispatch();
 
-    const addCart = (item) =>{
-        dispatch(addToCart (item))
+    const addCart = (item) => {
+        dispatch(addToCart(item))
         toast.success("Add to cart")
     }
 
-    const deleteCart = (item) =>{
+    const deleteCart = (item) => {
         dispatch(deleteFromCart(item));
         toast.success("Delete cart")
     }
-    useEffect(()=>{
+    useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cartItems))
-    },[cartItems])
+    }, [cartItems])
 
 
     // filter product 
-    const filterProduct = getAllProduct.filter((obj)=> obj.category.includes(categoryname));
-   //console.log(filterProduct)
+    const filterProduct = getAllProduct.filter((obj) => obj.category.includes(categoryname));
+    //console.log(filterProduct)
     return (
         <Layout>
             <div className="mt-10">
@@ -71,7 +71,7 @@ const CategoryPage = () => {
                                                         />
                                                         <div className="p-6">
                                                             <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
-                                                              Luxnest
+                                                                Luxnest
                                                             </h2>
                                                             <h1 className="title-font text-lg font-medium text-gray-900 mb-3">
                                                                 {title.substring(0, 25)}
@@ -81,23 +81,23 @@ const CategoryPage = () => {
                                                             </h1>
 
                                                             <div className="flex justify-center">
-                                                {cartItems?.some((p) => p.id === item.id) ? (
-                                                    <button
-                                                        onClick={() => deleteCart(item)}
-                                                        className="bg-red-700 hover:bg-pink-600 w-full text-white py-[1px] rounded-lg font-[600] "
-                                                    >
-                                                        Delete From Cart
-                                                    </button>)
-                                                    :
-                                                    (
-                                                        <button
-                                                            onClick={() => addCart(item)}
-                                                            className="bg-pink-500 hover:bg-pink-600 w-full text-white py-[4px] rounded-lg font-bold"
-                                                        >
-                                                            Add To Cart
-                                                        </button>
-                                                    )}
-                                            </div>
+                                                                {cartItems?.some((p) => p.id === item.id) ? (
+                                                                    <button
+                                                                        onClick={() => deleteCart(item)}
+                                                                        className="bg-red-700 hover:bg-pink-600 w-full text-white py-[1px] rounded-lg font-[600] "
+                                                                    >
+                                                                        Delete From Cart
+                                                                    </button>)
+                                                                    :
+                                                                    (
+                                                                        <button
+                                                                            onClick={() => addCart(item)}
+                                                                            className="bg-pink-500 hover:bg-pink-600 w-full text-white py-[4px] rounded-lg font-bold"
+                                                                        >
+                                                                            Add To Cart
+                                                                        </button>
+                                                                    )}
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>

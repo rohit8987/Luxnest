@@ -1,18 +1,17 @@
-import {  useState } from "react";
-// import myContext from "../../context/myContext";
-import { useNavigate } from "react-router";
+import { useContext, useState } from "react";
+import myContext from "../../context/MyContext";
+import { useNavigate } from "react-router-dom";
 
-const searchData =[
 
-];
+
 const SearchBar = () => {
-
-  
+    const context = useContext(myContext);
+    const { getAllProduct } = context
     // Search State 
     const [search, setSearch] = useState("");
 
     // Filter Search Data
-    const filterSearchData = searchData.filter((obj) => obj.title.toLowerCase().includes(search)).slice(0, 8)
+    const filterSearchData = getAllProduct.filter((obj) => obj.title.toLowerCase().includes(search)).slice(0, 8)
 
     const navigate = useNavigate();
 
@@ -35,7 +34,8 @@ const SearchBar = () => {
                         <>
                             {filterSearchData.map((item, index) => {
                                 return (
-                                    <div key={index} className="py-2 px-2 cursor-pointer" onClick={() => navigate(`/productinfo/${item.id}`)}>
+                                    <div key={index} className="py-2 px-2 cursor-pointer" 
+                                    onClick={() => navigate(`/productinfo/${item.id}`)}>
                                         <div className="flex items-center gap-2">
                                             <img className="w-10" src={item.productImageUrl} alt="" />
                                             {item.title}

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import myContext from "../../context/MyContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { addDoc, collection,  Timestamp } from "firebase/firestore";
@@ -8,34 +8,34 @@ import Loader from "../../components/loader/Loader"
 
 const categoryList = [
     {
-        name: 'fashion'
+        name: 'Fashion'
     },
     {
-        name: 'shirt'
+        name: 'Shirt'
     },
     {
-        name: 'jacket'
+        name: 'Jacket'
     },
     {
-        name: 'mobile'
+        name: 'Mobile'
     },
     {
-        name: 'laptop'
+        name: 'Laptop'
     },
     {
-        name: 'shoes'
+        name: 'Shoes'
     },
     {
-        name: 'home'
+        name: 'Home'
     },
     {
-        name: 'books'
+        name: 'Books'
     }
 ]
 
 const AddProductPage = () => {
     const context = useContext(myContext);
-    const { loading, setLoading, getAllProductFunction } = context;
+    const { loading, setLoading,  } = context;
 
     // navigate 
     const navigate = useNavigate();
@@ -49,6 +49,7 @@ const AddProductPage = () => {
         productImageUrl: "",
         category: "",
         description: "",
+        quantity: 1,
         time: Timestamp.now(),
         date: new Date().toLocaleString(
             "en-US",
@@ -81,10 +82,9 @@ const AddProductPage = () => {
             }
            
             
-        }
+        };
 
-
-;
+    
     return (
         <div>
             <div className='flex justify-center items-center h-screen'>
@@ -95,7 +95,7 @@ const AddProductPage = () => {
                     {/* Top Heading  */}
                     <div className="mb-5">
                         <h2 className='text-center text-2xl font-bold text-pink-500 '>
-                            Update Product
+                            Create Product
                         </h2>
                     </div>
 
@@ -192,7 +192,7 @@ const AddProductPage = () => {
                             type='button'
                             className='bg-pink-500 hover:bg-pink-600 w-full text-white text-center py-2 font-bold rounded-md '
                         >
-                            Update Product
+                            Create Product
                         </button>
                     </div>
                 </div>

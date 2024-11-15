@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import myContext from "../../context/MyContext";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
 import { deleteDoc, doc } from "firebase/firestore";
 import { fireDB } from "../../Firebase/FirebaseConfig";
