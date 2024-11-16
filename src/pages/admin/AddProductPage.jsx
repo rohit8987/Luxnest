@@ -7,30 +7,15 @@ import toast from "react-hot-toast";
 import Loader from "../../components/loader/Loader"
 
 const categoryList = [
-    {
-        name: 'Fashion'
-    },
-    {
-        name: 'Shirt'
-    },
-    {
-        name: 'Jacket'
-    },
-    {
-        name: 'Mobile'
-    },
-    {
-        name: 'Laptop'
-    },
-    {
-        name: 'Shoes'
-    },
-    {
-        name: 'Home'
-    },
-    {
-        name: 'Books'
-    }
+    { name: 'Earring Collection' },
+    { name: 'Rings' },
+    { name: 'Bangles' },
+    { name: 'Anklets' },
+    { name: 'Hair Accessories' },
+    { name: 'Nose Pins' },
+    { name: 'Customized Jewelry' },
+    { name: 'Bracelets Unisex' },
+    {name: 'Necklaces and Sets'}
 ]
 
 const AddProductPage = () => {

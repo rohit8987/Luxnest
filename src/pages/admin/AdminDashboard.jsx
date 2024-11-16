@@ -4,6 +4,8 @@ import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import ProductDetail from './ProductDetail'
 import OrderDetail from './OrderDetail'
 import UserDetail from "./UserDetail"
+import { Link } from "react-router-dom";
+import { IoMdArrowBack } from "react-icons/io";
 
 
 const AdminDashboard = () => {
@@ -14,9 +16,11 @@ const AdminDashboard = () => {
         <div>
             {/* Top */}
             <div className="top mb-5 px-5 mt-5">
+              <button className="text-center text-2xl font-bold text-pink-500"><Link to={'/'}><IoMdArrowBack/></Link></button>
                 <div className=" bg-pink-50 py-5 border border-pink-100 rounded-lg">
                     <h1 className=" text-center text-2xl font-bold text-pink-500">Admin Dashboard</h1>
                 </div>
+               
             </div>
 
             <div className="px-5">
